@@ -1,5 +1,6 @@
 package com.jgmonteiro.course.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class PostService {
 	
 	public Post findById(String id) {
 		Optional<Post> obj = repository.findById(id);
-		return obj.orElseThrow(()-> new ObjectNotFoundException("Postagem não encontrada"));
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Postagem não encontrada")); 
+	}
+	
+	public List<Post> findByTitle(String text){
+		return repository.searchTitle(text);
 	}
 }
